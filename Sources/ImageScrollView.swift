@@ -192,6 +192,24 @@ open class ImageScrollView: UIScrollView {
         configureImageForSize(image.size)
     }
     
+    open func display(imageView: UIImageView, image: UIImage) {
+      
+        if let zoomView = zoomView {
+            zoomView.removeFromSuperview()
+        }
+      
+        imageView.image = image
+        zoomView = imageView
+        zoomView!.isUserInteractionEnabled = true
+        addSubview(zoomView!)
+      
+        let tapGesture = UITapGestureRecognizer(target: self, action:   #selector(ImageScrollView.doubleTapGestureRecognizer(_:)))
+        tapGesture.numberOfTapsRequired = 2
+        zoomView!.addGestureRecognizer(tapGesture)
+      
+        configureImageForSize(image.size)
+    }
+  
     private func configureImageForSize(_ size: CGSize) {
         imageSize = size
         contentSize = imageSize
