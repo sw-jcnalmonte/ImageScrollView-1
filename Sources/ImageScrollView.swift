@@ -193,12 +193,16 @@ open class ImageScrollView: UIScrollView {
     }
     
     open func display(imageView: UIImageView, image: UIImage) {
+            
+        guard let image = imageView.image else {
+            assertionFailure("imageView must have image")
+            return
+        }
       
         if let zoomView = zoomView {
             zoomView.removeFromSuperview()
         }
       
-        imageView.image = image
         zoomView = imageView
         zoomView!.isUserInteractionEnabled = true
         addSubview(zoomView!)
