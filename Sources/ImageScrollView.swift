@@ -192,7 +192,7 @@ open class ImageScrollView: UIScrollView {
         configureImageForSize(image.size)
     }
     
-    open func display(imageView: UIImageView, image: UIImage) {
+    open func display(imageView: UIImageView) {
             
         guard let image = imageView.image else {
             assertionFailure("imageView must have image")
